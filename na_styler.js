@@ -21,7 +21,7 @@
 
 */
 
-window.addEventListener("onload", setupStyles());
+window.addEventListener("onload", setStyles);
 
 function setStyles() {
       var styleNum = randInt(5);
@@ -39,8 +39,11 @@ function setStyles() {
             sheetImg.setAttribute("src", "na_style_" + i + ".css")
             sheetImg.addEventListener(function () {
                   fancySheet.setAttribute("")
-            })
+            });
+            sheetImg.appendChild(figbox);
       }
+      var thumbStyles = document.createElement("style");
+      document.head.appendChild(thumbStyles);
 }
 
 
