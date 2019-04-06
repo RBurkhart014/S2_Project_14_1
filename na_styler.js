@@ -21,45 +21,58 @@
 
 */
 
-window.addEventListener("onload", setStyles);
+window.onload = setStyles;
 
 function setStyles() {
       var styleNum = randInt(5);
-      var link = document.createElement("link");
-      link.setAttribute("rel", "styleSheet");
-      link.setAttribute("id", "fancySheet");
-      link.setAttribute("href", "na_style_" + styleNum + ".css");
+
+//randomizes the pictures every time the page refreshes
+
+      var fancySheet = document.createElement("link");
+      fancySheet.setAttribute("rel", "styleSheet");
+      fancySheet.setAttribute("id", "fancySheet");
+      fancySheet.setAttribute("href", "na_style_" + styleNum + ".css");
       document.head.appendChild(fancySheet);
+
+      //link created an html element named link & gave it an id and source
+
+      var figBox = document.createElement("figure");
       figBox.setAttribute("id", "styleThumbs");
-      document.getElementById("box").appendChild(figBox)
+      document.getElementById("box").appendChild(figBox);
+
+//creates a figure inside the div element
 
       for (var i = 0; i <= 4; i++) { 
             var sheetImg = document.createElement("img");
-            sheetImg.setAttribute("src", "na_small_" + i + ".css")
-            sheetImg.setAttribute("src", "na_style_" + i + ".css")
-            sheetImg.addEventListener(function () {
-                  fancySheet.setAttribute("")
-            });
-            sheetImg.appendChild(figbox);
+            sheetImg.setAttribute("src", "na_small_" + i + ".png")
+            sheetImg.setAttribute("alt", "na_style_" + i + ".css")
+            sheetImg.onclick = function (e) {
+                  fancySheet.setAttribute("href", e.target.alt);
+            }
+            figBox.appendChild(sheetImg);
       }
+
       var thumbStyles = document.createElement("style");
       document.head.appendChild(thumbStyles);
 
-      document.styleSheets[document.thumbStyles.length - 1 ].insertRule(
+//loops through the page styles
+
+      document.styleSheets[document.styleSheets.length - 1 ].insertRule(
             "figure#styleThumbs { \
                   position: absolute; \
                   left: 0px; \
                   button: 0px; \
+                  margin-top: 500px \
             }", 0);
       
-      document.styleSheets[document.thumbStyles.length - 1 ].insertRule(
+      document.styleSheets[document.styleSheets.length - 1 ].insertRule(
             "figure#styleThumbs img { \
                   outline: 1px solid black; \
                   cursor: pointer; \
                   opacity: 0.75; \
             }", 1);
 
-      document.styleSheets[document.thumbStyles.length - 1 ].insertRule(
+      document.styleSheets[document.styleSheets.length - 1 ].insertRule(
             "figure#styleThumbs img:hover { \
                   outline: 1px solid red; \
                   opacity: 1; \
@@ -67,17 +80,7 @@ function setStyles() {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
+//the three long yellow styles just make it so no matter what photo youre on you can still choose which one you wish to view
 
 
 function randInt(size) {
